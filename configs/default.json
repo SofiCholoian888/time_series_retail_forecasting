@@ -1,0 +1,11 @@
+{
+  "horizon": 28,
+  "n_windows": 3,
+  "step_size": 28,
+  "refit": false,
+  "seed": 42,
+  "n_estimators": 350,
+  "learning_rate": 0.05,
+  "max_depth": 6,
+  "threads": 2
+}

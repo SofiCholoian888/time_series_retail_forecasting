@@ -1,0 +1,32 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Poetry in its own environment
+        run: |
+          python -m venv /tmp/retail-poetry
+          /tmp/retail-poetry/bin/pip install poetry==2.2.1
+          echo /tmp/retail-poetry/bin >> "$GITHUB_PATH"
+      - name: Install locked project
+        run: |
+          poetry check --lock
+          poetry install --no-interaction
+      - name: Check source and notebooks
+        run: poetry run pre-commit run --all-files
+      - name: Test forecasting and data contracts
+        run: poetry run pytest -q
+      - name: Build package
+        run: poetry build
