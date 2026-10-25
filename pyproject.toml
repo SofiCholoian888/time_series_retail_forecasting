@@ -1,40 +1,58 @@
 [project]
 name = "time-series-retail-forecasting"
-version = "0.1.0"
-description = ""
-authors = [
-    {name = "SofiCholoian888",email = "SofiCholoian@yandex.ru"}
-]
+version = "0.2.0"
+description = "Reproducible retail sales forecasting with XGBoost and MLForecast"
+authors = [{name = "SofiCholoian888"}]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11,<3.13"
 dependencies = [
-    "pandas (>=2.2.0,<3.0.0)",
-    "numpy (>=2.5.3,<3.0.0)",
-    "statsforecast (>=2.1.1,<3.0.0)",
-    "neuralforecast (>=3.2.2,<4.0.0)",
-    "xgboost (>=3.4.1,<4.0.0)",
-    "lightgbm (>=4.7.0,<5.0.0)",
-    "scikit-learn (>=1.9.1,<2.0.0)",
-    "matplotlib (>=3.11.2,<4.0.0)",
-    "seaborn (>=0.13.2,<0.14.0)",
-    "jupyter (>=1.1.1,<2.0.0)"
+    "numpy==2.2.6", "pandas==2.2.3", "scipy==1.15.3",
+    "scikit-learn==1.6.1", "xgboost==3.0.2", "mlforecast==1.0.2",
+    "coreforecast==0.0.16", "utilsforecast==0.2.12", "numba==0.61.2",
 ]
 
+[project.scripts]
+retail-forecast = "retail_forecasting.cli:main"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core==2.2.1"]
 build-backend = "poetry.core.masonry.api"
 
-[dependency-groups]
-dev = [
-    "pytest (>=9.1.1,<10.0.0)",
-    "black (>=26.10.0,<27.0.0)",
-    "ruff (>=0.16.10,<0.17.0)",
-    "pre-commit (>=4.6.2,<5.0.0)",
-    "isort (>=9.0.2,<10.0.0)",
-    "nbqa (>=1.9.1,<2.0.0)",
-    "nbstripout (>=0.9.1,<0.10.0)"
-]
-
 [tool.poetry]
-packages = [{ include = "retail_forecasting", from = "src" }]
+packages = [{include = "retail_forecasting", from = "src"}]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "8.3.5"
+ruff = "0.11.13"
+pre-commit = "4.2.0"
+pre-commit-hooks = "5.0.0"
+nbformat = "5.10.4"
+nbstripout = "0.8.1"
+
+[tool.poetry.group.research]
+optional = true
+
+[tool.poetry.group.research.dependencies]
+statsforecast = "2.0.1"
+neuralforecast = "3.0.2"
+torch = "2.6.0"
+lightgbm = "4.6.0"
+statsmodels = "0.14.4"
+pyarrow = "20.0.0"
+matplotlib = "3.10.3"
+seaborn = "0.13.2"
+jupyterlab = "4.4.3"
+ipykernel = "6.29.5"
+tqdm = "4.67.1"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["notebooks/research"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

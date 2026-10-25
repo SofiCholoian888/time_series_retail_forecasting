@@ -1,0 +1,58 @@
+{
+  "created_at_utc": "2026-10-25T14:22:56.895660+00:00",
+  "data_file": "demo.csv",
+  "data_sha256": "9ddfa21e1c2c9aad40d3b63dbbc0b90a75e60904ea56f7aa576f9e2e936048e1",
+  "source_sha256": "622497ab7b922bb921ea944fda9a270370d3bc269f042e6292aed6ec75a1f292",
+  "git_commit": "1d0449a38230709860869d13672db108727af1b8",
+  "git_dirty": true,
+  "python": "3.12.14",
+  "packages": {
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.6.1",
+    "xgboost": "3.0.2",
+    "mlforecast": "1.0.2",
+    "coreforecast": "0.0.16"
+  },
+  "rows": 960,
+  "series": 4,
+  "train_start": "2020-01-01",
+  "data_end": "2020-08-27",
+  "config": {
+    "horizon": 28,
+    "n_windows": 3,
+    "step_size": 28,
+    "refit": false,
+    "seed": 42,
+    "n_estimators": 40,
+    "learning_rate": 0.1,
+    "max_depth": 4,
+    "threads": 2
+  },
+  "strategy": "recursive",
+  "postprocessing": "clip final predictions at 0; no rounding",
+  "status": "EVALUATED_NOT_DEPLOYED",
+  "forecast_points_per_model": 336,
+  "cutoffs": [
+    "2020-06-04",
+    "2020-07-02",
+    "2020-07-30"
+  ],
+  "metrics": [
+    {
+      "model": "SeasonalNaive",
+      "sMAPE_%": 5.383844913724702,
+      "MAE": 1.6994047619047619,
+      "RMSE": 2.1869472090652065
+    },
+    {
+      "model": "XGBoost",
+      "sMAPE_%": 6.409140210609708,
+      "MAE": 2.0233996130694387,
+      "RMSE": 2.437018123889991
+    }
+  ],
+  "synthetic_demo": true,
+  "purpose": "Technical smoke run only; not a validation of Kaggle model quality",
+  "forecast_rows": 112
+}

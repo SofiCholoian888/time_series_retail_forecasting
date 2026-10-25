@@ -16,7 +16,6 @@ __pycache__/
 # Данные (большие файлы)
 data/raw/
 data/processed/
-*.csv
 
 # IDE
 .vscode/
@@ -25,3 +24,20 @@ data/processed/
 # OS
 .DS_Store
 Thumbs.db
+
+# Generated artifacts, credentials, and build output
+artifacts/
+results/
+cv_chunks/
+dist/
+build/
+*.zip
+*.pkl
+*.pickle
+*.joblib
+.env
+.env.*
+kaggle.json
+.tooling/
+.coverage
+htmlcov/
